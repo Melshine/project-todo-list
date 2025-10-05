@@ -1,0 +1,23 @@
+.todo-row {
+    border-bottom: 1px solid gray;
+    display: flex;
+    gap: 10px;
+    justify-items: center;
+    cursor: pointer;
+}
+
+.todo-row:hover{
+    background-color:#eee;
+}
+
+.todo-popup{
+    padding:10px 30px;
+    width:25%;
+    min-width:300px
+}
+
+.todo-popup p{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}

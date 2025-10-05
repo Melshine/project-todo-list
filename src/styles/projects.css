@@ -1,0 +1,27 @@
+.projects-card{
+    padding:10px 20px;
+    outline: 1px solid gray;
+    border-radius: 7px;
+    cursor: pointer;
+    box-shadow: 3px 3px 10px lightgray;
+}
+
+.projects-card:hover{
+    outline-width: 2px;
+}
+
+.projects-board{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap:10px
+}
+
+.project__add{
+    border:none;
+    margin:10px;
+    background-color: white;
+    cursor: pointer;
+}
+.project__add:hover{
+    font-weight: bold;
+}
