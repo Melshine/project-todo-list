@@ -19,5 +19,14 @@
 .todo-popup p{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap:5px;
+}
+
+.todo-row__title{
+    flex:1;
+}
+
+.todo-row__remove{
+    align-self: center;
 }

@@ -1,3 +1,5 @@
+import { ProjectManager } from "../logic/project.js";
+import { save } from "../save.js";
 import "../styles/projects.css"
 import { createDOMTodoRow, renderTodoPopup } from "./todo.js";
 
@@ -5,6 +7,8 @@ function createDOMProjectCard(project){
     const div = document.createElement('div')
     const h2 = document.createElement('h2');
     const p = document.createElement('p');
+    const remove = document.createElement('button')
+    remove.textContent = 'remove'
 
     div.className = 'projects-card'
     h2.className = 'projects-card__title'
@@ -12,6 +16,7 @@ function createDOMProjectCard(project){
 
     div.appendChild(h2);
     div.appendChild(p);
+    
 
     h2.textContent = project.getTitle();
     const length = project.length();
@@ -20,6 +25,52 @@ function createDOMProjectCard(project){
     div.addEventListener('click', event => {
         renderProject(project)
     })
+
+    h2.appendChild(remove)
+    remove.addEventListener('click', event => {
+        event.stopPropagation()
+        ProjectManager.remove(project)
+        renderProjects(ProjectManager)
+        save()
+    })
+
+    return div
+}
+
+function createDOMAddProject(){
+    const div = document.createElement('div')
+    const h2 = document.createElement('h2');
+    const p = document.createElement('p');
+
+    div.className = 'projects-card'
+    h2.className = 'projects-card__title'
+    p.className = 'projects-card__p'
+
+    h2.textContent = ' + New project'
+    // p.textContent = 'Name: '
+
+    const input = document.createElement('input')
+    const button = document.createElement('button')
+    button.textContent = 'create'
+
+    button.addEventListener('click', event => {
+        const title = input.value;
+        ProjectManager.add({title, })
+        save()
+        renderProjects(ProjectManager)
+    })
+
+    div.appendChild(h2);
+    div.appendChild(p);
+    p.appendChild(input)
+    p.appendChild(button)
+
+    p.style.display = 'flex';
+    input.style.flex = '1 1 0'
+    input.style.width = "100px"
+
+    div.style.background = "#eee";
+    div.style.cursor = "auto"
 
     return div
 }
@@ -54,5 +105,6 @@ export function renderProjects(projectManager){
     }
     document.querySelector('#main__title').textContent = 'My Projects'
     content.innerHTML = '';
+    div.appendChild(createDOMAddProject())
     content.appendChild(div);
 }

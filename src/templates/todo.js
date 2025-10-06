@@ -3,7 +3,6 @@ import todoPopup from './todoPopup.html'
 import { PRIORITY } from '../logic/todo';
 import { renderProject } from './projects';
 import { save } from '../save';
-import { ProjectManager } from '../logic/project';
 
 export function createDOMTodoRow(project, todo){
     const div = document.createElement('div')
@@ -16,12 +15,12 @@ export function createDOMTodoRow(project, todo){
         event.stopPropagation()
         todo.toggleDone()
         console.log(todo)
-        save(ProjectManager)
+        save()
     })
 
     if(todo.isDone()) done.checked = true;
     if(todo.getDueDate()){
-        h2.textContent += ` (${todo.getDueDate()})` 
+        h2.textContent += ` (due: ${todo.getDueDate()})` 
     }
 
     div.className = 'todo-row'
@@ -33,6 +32,18 @@ export function createDOMTodoRow(project, todo){
     div.addEventListener('click', event => {
         renderTodoPopup(project, todo)
     })
+
+    const remove = document.createElement('button')
+    remove.className = 'todo-row__remove'
+    remove.textContent = "Delete"
+    remove.addEventListener('click', event =>{
+        event.stopPropagation()
+        project.remove(todo)
+        renderProject(project)
+        save()
+    })
+
+    div.appendChild(remove)
 
     return div;
 }
@@ -88,7 +99,7 @@ export function renderTodoPopup(project, todo){
             project.add(obj)
         }
 
-        save(ProjectManager)
+        save()
         renderProject(project)
         dialog.close()
     })

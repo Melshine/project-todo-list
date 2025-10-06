@@ -7,11 +7,13 @@ body{
 main {
     display: grid;
     grid-template-columns: 300px auto;
+    height:100vh;
 }
 
 .side{
     background-color:lightgray;
-    height:100vh;
+    
+    align-self: stretch;
 }
 
 .side__projects{

@@ -1,6 +1,6 @@
 import { ProjectManager } from "./logic/project";
 
-export function save(pm){
+export function save(pm = ProjectManager){
     const save = []
     for(const project of pm.getProjects()){
         const p = {

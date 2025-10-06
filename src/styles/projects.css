@@ -16,6 +16,12 @@
     gap:10px
 }
 
+.projects-card h2{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
 .project__add{
     border:none;
     margin:10px;

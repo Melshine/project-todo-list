@@ -11,6 +11,7 @@ export const ProjectManager = function (){
 
     function remove(project){
         const projectId = projects.findIndex(_project => _project ===  project)
+        projects.splice(projectId, 1)
     }
 
     function getProjects(){
